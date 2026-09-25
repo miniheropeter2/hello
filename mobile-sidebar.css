@@ -1,0 +1,9 @@
+/* Drawer animation for small screens */
+@media (max-width: 760px) {
+  body.sidebar-open { overflow: hidden; }
+  body.sidebar-open::after { content:""; position:fixed; inset:0; z-index:80; background:rgba(2,6,23,.58); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); }
+  .sidebar { position:fixed !important; left:12px; top:12px; bottom:12px; width:min(290px,calc(100vw - 24px)) !important; height:auto !important; margin:0 !important; z-index:90; transform:translateX(-115%); opacity:0; visibility:hidden; pointer-events:none; transition:transform .28s ease,opacity .22s ease,visibility .22s ease; }
+  body.sidebar-open .sidebar { transform:translateX(0); opacity:1; visibility:visible; pointer-events:auto; }
+  .mobile-menu,.sidebar-menu-toggle { position:relative; z-index:101; }
+}
+@media (prefers-reduced-motion:reduce) { .sidebar { transition:none !important; } }

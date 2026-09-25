@@ -1,0 +1,18 @@
+/* UX polish: smooth collapse, modal spacing, validation feedback, and sync status */
+.app-layout .sidebar{transition:width .28s cubic-bezier(.22,1,.36,1),padding .28s ease,transform .28s ease;overflow:hidden}
+.app-layout .main-area{transition:margin-left .28s cubic-bezier(.22,1,.36,1),width .28s ease}
+.sidebar-menu-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:42px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);font-weight:700;transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.sidebar-menu-toggle:hover{background:rgba(79,140,255,.14);transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,140,255,.12)}
+.app-layout.sidebar-collapsed .sidebar{width:78px;padding-left:10px;padding-right:10px}
+.app-layout.sidebar-collapsed .brand>div,.app-layout.sidebar-collapsed .nav-item span:last-child,.app-layout.sidebar-collapsed .theme-button span:last-child,.app-layout.sidebar-collapsed .sidebar-menu-toggle span:last-child{opacity:0;width:0;overflow:hidden;transition:opacity .15s ease,width .28s ease}
+.app-layout:not(.sidebar-collapsed) .brand>div,.app-layout:not(.sidebar-collapsed) .nav-item span:last-child,.app-layout:not(.sidebar-collapsed) .theme-button span:last-child,.app-layout:not(.sidebar-collapsed) .sidebar-menu-toggle span:last-child{opacity:1;transition:opacity .2s ease .08s}
+.modal-backdrop{padding:clamp(16px,4vw,40px)}
+.transaction-modal{padding:clamp(20px,4vw,32px);border:1px solid var(--line);box-shadow:0 24px 80px rgba(0,0,0,.28)}
+.transaction-modal .section-head{margin-bottom:20px}.transaction-modal .stack-form{gap:18px}.transaction-modal label{gap:7px}.transaction-modal input,.transaction-modal select{min-height:46px}.transaction-modal .primary-btn{margin-top:6px;min-height:48px}
+.form-error{display:none;margin:0 0 16px;padding:12px 14px;border:1px solid rgba(251,113,133,.42);border-radius:12px;background:rgba(251,113,133,.1);color:var(--red);font-weight:600;line-height:1.4}.form-error.show{display:block;animation:validationIn .2s ease}
+.stack-form input:invalid:not(:placeholder-shown),.stack-form select:invalid{border-color:rgba(251,113,133,.7);box-shadow:0 0 0 3px rgba(251,113,133,.1)}
+@keyframes validationIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.sync-status{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.78rem;font-weight:700;white-space:nowrap}.sync-status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.sync-status[data-status=success]{color:var(--green)}.sync-status[data-status=warning]{color:var(--yellow)}.sync-status[data-status=error]{color:var(--red)}.sync-status[data-status=loading]{color:var(--blue)}.sync-status[data-status=loading]::before{animation:syncPulse 1s infinite}@keyframes syncPulse{50%{opacity:.3;transform:scale(.7)}}
+.toast[data-tone=success]{border-left:3px solid var(--green)}.toast[data-tone=warning]{border-left:3px solid var(--yellow)}.toast[data-tone=error]{border-left:3px solid var(--red)}
+@media(max-width:760px){.app-layout.sidebar-collapsed .sidebar{width:100%;padding:14px}.app-layout.sidebar-collapsed .brand>div,.app-layout.sidebar-collapsed .nav-item span:last-child,.app-layout.sidebar-collapsed .theme-button span:last-child,.app-layout.sidebar-collapsed .sidebar-menu-toggle span:last-child{opacity:1;width:auto}.transaction-modal{max-height:calc(100dvh - 32px)}}
+@media(prefers-reduced-motion:reduce){.app-layout .sidebar,.app-layout .main-area,.sidebar-menu-toggle,.form-error{transition:none;animation:none}}
