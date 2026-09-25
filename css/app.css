@@ -1,0 +1,2 @@
+/* Keep the existing root styles available at the paths used by index.html. */
+@import url('../app.css');
